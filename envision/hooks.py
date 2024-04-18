@@ -116,13 +116,18 @@ app_license = "MIT"
 # ---------------
 # Hook on document methods and events
 
-# doc_events = {
-# 	"*": {
-# 		"on_update": "method",
-# 		"on_cancel": "method",
-# 		"on_trash": "method"
-# 	}
-# }
+doc_events = {
+	# "Purchase Invoice": {
+    #     # "before_submit": "", 
+    #     # "before_insert": "envision.api.purchase_invoice.validate_budget_for_item"
+	# 	"on_update": "envision.api.purchase_invoice.validate_budget_for_item",
+	# 	# "on_cancel": "method",
+	# 	# "on_trash": "method"
+	# },
+    "Sales Invoice": {
+        "before_submit": "",
+	}
+}
 
 # Scheduled Tasks
 # ---------------

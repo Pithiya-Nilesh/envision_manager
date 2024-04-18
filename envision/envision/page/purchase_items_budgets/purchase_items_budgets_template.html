@@ -1,0 +1,32 @@
+<div id="1">
+    <!-- item like payroll po and vendor bill cost teble -->
+    <table class="table table-bordered table-hover" style="text-align: center; width: 100%;  table-layout: fixed;">
+        <tr>
+            <th>Items</th>
+            <th>Q1 Budgeted - Q1 Actual</th>
+            <th>Q2 Budgeted - Q2 Actual</th>
+            <th>Q3 Budgeted - Q3 Actual</th>
+            <th>Q4 Budgeted - Q4 Actual</th>
+            <th>Total Budgeted - Total Actual</th>
+        </tr>
+        
+        {% $.each(Data, (idx, row) => { %}
+                <tr>
+                    <td style="font-weight: bold;">{{ row.item }}</td>
+                    <td>{{ row.q1_budgeted }} - {{ row.q1_actual }}</td>
+                    <td>{{ row.q2_budgeted }} - {{ row.q2_actual }}</td>
+                    <td>{{ row.q3_budgeted }} - {{ row.q3_actual }}</td>
+                    <td>{{ row.q4_budgeted }} - {{ row.q4_actual }}</td>
+                    <td>{{ row.total_budgeted }} - {{ row.total_actual }}</td>
+                </tr>
+        {% }) %}
+<!-- 
+        <tr>
+        <td style="font-weight: bold;" >TOTAL</td>
+        <td style="font-weight: bold;">{{allTotal.vb_cost}}</td>
+        <td style="font-weight: bold;">{{allTotal.total_hrs}}</td>
+        <td style="font-weight: bold;">{{allTotal.po_cost}}</td>
+        </tr> -->
+    </table>
+    
+</div>
