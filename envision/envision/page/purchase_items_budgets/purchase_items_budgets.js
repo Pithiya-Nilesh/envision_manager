@@ -16,8 +16,6 @@ frappe.pages['purchase-items-budgets'].on_page_load = function(wrapper) {
 			// 	to_date: to_date
 			// },
 			callback: function(response) {
-				console.log("response", response)
-				console.log("data", response.message)
 				var Data = response.message;
 				$("#1").remove();
 				$(frappe.render_template("purchase_items_budgets_template", {Data: Data})).appendTo(page.body);

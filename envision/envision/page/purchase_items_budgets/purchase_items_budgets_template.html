@@ -13,11 +13,11 @@
         {% $.each(Data, (idx, row) => { %}
                 <tr>
                     <td style="font-weight: bold;">{{ row.item }}</td>
-                    <td>{{ row.q1_budgeted }} - {{ row.q1_actual }}</td>
-                    <td>{{ row.q2_budgeted }} - {{ row.q2_actual }}</td>
-                    <td>{{ row.q3_budgeted }} - {{ row.q3_actual }}</td>
-                    <td>{{ row.q4_budgeted }} - {{ row.q4_actual }}</td>
-                    <td>{{ row.total_budgeted }} - {{ row.total_actual }}</td>
+                    <td>{{ row.q1_budgeted || "₹0.0" }} - {{ row.q1_actual || "₹0.0" }}</td>
+                    <td>{{ row.q2_budgeted || "₹0.0" }} - {{ row.q2_actual || "₹0.0" }}</td>
+                    <td>{{ row.q3_budgeted || "₹0.0" }} - {{ row.q3_actual || "₹0.0" }}</td>
+                    <td>{{ row.q4_budgeted || "₹0.0" }} - {{ row.q4_actual || "₹0.0" }}</td>
+                    <td>{{ row.total_budgeted || "₹0.0" }} - {{ row.total_actual || "₹0.0" }}</td>
                 </tr>
         {% }) %}
 <!-- 
