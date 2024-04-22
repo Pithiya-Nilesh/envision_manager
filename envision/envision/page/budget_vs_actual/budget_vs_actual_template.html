@@ -1,0 +1,405 @@
+ 
+<div id="1"  style="width: 100%; overflow-x: auto;">
+    <table class="table table-bordered table-hover" style="text-align: center; width: 100%; font-size: small;">
+    <tr style="text-align:center;">
+        <th>Department</th>
+        <th>Revenue/ <br>Expense</th>
+        <th>Q1
+            Budgeted</th>
+        <th>Q1
+            Actual</th>
+        <th>% Q1 Ach</th>
+        <th>Q2
+            Budgeted</th>
+        <th>Q2
+            Actual</th>
+        <th>% Q2 Ach</th>
+        <th>Q3
+            Budgeted</th>
+        <th>Q3
+            Actual</th>
+        <th>% Q3 Ach</th>
+        <th>Jan-24 Actual</th>
+        <th>Q4
+            Budgeted</th>
+        <th>Progression Q4
+            Actual</th>
+        <th>% Q4 Ach</th>
+        <th>Total Budget</th>
+        <th>Progression Actual</th>
+        <th>% YTM Progression</th>
+        <th>FY 22-23 </th>
+        <th>% Growth (yearly)</th>
+    
+        
+    </tr>
+
+
+    {% $.each(data, (idx, row) => { %}
+
+        <tr >
+            <td>{{ row.department }}</td>
+            <td>{{ row.type }}</td>
+            <td>{{ row.q1_budgeted || "₹0" }}</td>
+            <td>{{ row.q1_actual || "₹0" }}</td>
+            <td>{{ row.q1_ach }}</td>
+            <td>{{ row.q2_budgeted || "₹0" }}</td>
+            <td>{{ row.q2_actual || "₹0"  }}</td>
+            <td>{{ row.q2_ach }}</td>
+            <td>{{ row.q3_budgeted || "₹0" }}</td>
+            <td>{{ row.q3_actual || "₹0" }}</td>
+            <td>{{ row.q3_ach }}</td>
+            <td></td>
+            <td>{{ row.q4_budgeted || "₹0" }}</td>
+            <td>{{ row.q4_actual || "₹0" }}</td>
+            <td>{{ row.q4_ach }}</td>
+            <td>{{ row.total_budgeted }}</td>
+            <td>{{ row.total_actual }}</td>
+            <td>{{ row.ytm_progression }}</td>
+        </tr>
+
+    {% }) %}
+
+    </table>
+</div>
+
+
+<!-- <div id="2">
+    <table class="table table-bordered table-hover" style="text-align: center; width: 100%; table-layout: fixed;">
+    <tr>
+        <th>Head</th>
+        <th>Category</th>
+        <th>Q1
+            Budgeted</th>
+        <th>Q1
+            Actual</th>
+        <th>% Q1 Ach</th>
+        <th>Q2
+            Budgeted</th>
+        <th>Q2
+            Actual</th>
+        <th>% Q2 Ach</th>
+        <th>Q3
+            Budgeted</th>
+        <th>Q3
+            Actual</th>
+        <th>% Q3 Ach</th>
+        <th>Jan-24 Actual</th>
+        <th>Q4
+            Budgeted</th>
+        <th>Progression Q4
+            Actual</th>
+        <th>% Q4 Ach</th>
+        <th>Total Budget</th>
+        <th>Progression Actual</th>
+        <th>% YTM Progression</th>
+    </tr>
+
+    <tr>
+        <td rowspan="4" style="vertical-align: middle;">Revenue</td>
+        <td>Material</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+
+    <tr> 
+      
+        <td>Service</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+
+    <tr> 
+       <td>Transport</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+
+    <tr> 
+        <td>Travel</td>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+     </tr>
+
+     <tr style="font-weight: bolder;">
+        <td colspan="2">Revenue Total</td>
+        <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+
+     </tr>
+
+     <tr>
+        <td rowspan="7" style="vertical-align: middle;">Expense</td>
+        <td>Material</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+
+    <tr> 
+      
+        <td>Finance Charges</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+
+    <tr> 
+       <td>Material</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+
+    <tr> 
+        <td>Salary</td>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+    </tr>
+
+    <tr> 
+        <td>Service</td>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+     </tr>
+
+     <tr> 
+        <td>Transport</td>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+     </tr>
+     
+     <tr> 
+        <td>Travel</td>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+     </tr> 
+
+     <tr style="font-weight: bolder;">
+        <td colspan="2">Expense Total</td>
+        <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+
+     </tr>
+
+    </table>
+</div> -->
+ 
+<!--  
+ <div id="3">
+   
+    <table class="table table-bordered table-hover" style="text-align: center; width: 100%;  table-layout: fixed;">
+        <thead>
+        <tr>
+            <th>Project Name</th>
+            <th>Client Name</th>
+            <th>Q1+Q2+Q3 Budget</th>
+            <th>Q1+Q2+Q3 Actual</th>
+            <th>Jan-24 <br>Actual</th>
+            <th>Q4 <br> Budget</th>
+            <th>Q4 <br> Actual</th>
+            <th>Total Budget</th>
+            <th>Total Actual</th>
+            <th>Status</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        
+            {% $.each(Data, (idx, row) => { %}
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>   
+                    
+                </tr>
+        {% }) %}
+        </tbody>
+
+    </table>
+    
+</div> -->

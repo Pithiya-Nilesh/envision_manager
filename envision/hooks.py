@@ -124,9 +124,9 @@ doc_events = {
 		# "on_cancel": "method",
 		# "on_trash": "method"
 	},
-    "Sales Invoice": {
-        "before_submit": "",
-	}
+    # "Sales Invoice": {
+    #     "before_submit": "",
+	# }
 }
 
 # Scheduled Tasks
