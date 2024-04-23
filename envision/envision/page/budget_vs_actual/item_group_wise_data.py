@@ -4,10 +4,9 @@ import frappe
 from erpnext.accounts.utils import get_fiscal_year
 
 
-
 temp_list = []
 @frappe.whitelist()
-def get_head_data():
+def item_group_wise_data():
     temp_list.clear()
     
     fy_quaters = get_fiscal_year_quaters()
