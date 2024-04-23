@@ -1,5 +1,6 @@
 from collections import defaultdict
 from envision.api.utils import get_fiscal_year_quaters, get_in_currency_format, get_previous_fiscal_year, get_total
+from envision.envision.page.budget_vs_actual.item_group_wise_data import get_head_data
 from erpnext.accounts.utils import get_fiscal_year
 import frappe, json
 
@@ -36,7 +37,9 @@ def get_data():
     sum_r_plus_exp = sum_revenue_plus_expense(ach_list)
     currency_data = get_in_currency_format(sum_r_plus_exp)
     final_list = remove_duplicate_departments(currency_data)
-    return final_list
+    
+    table_2_data = get_head_data()
+    return final_list, table_2_data
     
 def get_pi_data_with_budget(budget_quater, name, project, department):
     from frappe.utils import today
@@ -260,3 +263,4 @@ def get_previous_year_data(data):
     previous_year = get_previous_fiscal_year()
     
     return previous_year
+

@@ -30,3 +30,51 @@
     </table>
     
 </div>
+
+
+<div id="2" style="width: 100%; overflow-x: auto;">
+    <table class="table table-bordered table-hover" style="text-align: center; width: 100%; font-size: small;">
+        <tr style="text-align:center;">
+            <th>Head</th>
+            <th>Category</th>
+            <th>Q1 Budgeted</th>
+            <th>Q1 Actual</th>
+            <th>% Q1 Ach</th>
+            <th>Q2 Budgeted</th>
+            <th>Q2 Actual</th>
+            <th>% Q2 Ach</th>
+            <th>Q3 Budgeted</th>
+            <th>Q3 Actual</th>
+            <th>% Q3 Ach</th>
+            <th>Jan-24 Actual</th>
+            <th>Q4 Budgeted</th>
+            <th>Progression Q4 Actual</th>
+            <th>% Q4 Ach</th>
+            <th>Total Budget</th>
+            <th>Progression Actual</th>
+            <th>% YTM Progression</th>
+        </tr>
+        {% $.each(data, (idx, row) => { %}
+        <tr>
+            <td>{{ row.Head }}</td>
+            <td>{{ row.category }}</td>
+            <td>{{ row.q1_budgeted || "₹0" }}</td>
+            <td>{{ row.q1_actual || "₹0" }}</td>
+            <td>{{ row.q1_ach }}</td>
+            <td>{{ row.q2_budgeted || "₹0" }}</td>
+            <td>{{ row.q2_actual || "₹0"  }}</td>
+            <td>{{ row.q2_ach }}</td>
+            <td>{{ row.q3_budgeted || "₹0" }}</td>
+            <td>{{ row.q3_actual || "₹0" }}</td>
+            <td>{{ row.q3_ach }}</td>
+            <td></td>
+            <td>{{ row.q4_budgeted || "₹0" }}</td>
+            <td>{{ row.q4_actual || "₹0" }}</td>
+            <td>{{ row.q4_ach }}</td>
+            <td>{{ row.total_budgeted }}</td>
+            <td>{{ row.total_actual }}</td>
+            <td>{{ row.ytm_progression }}</td>
+        </tr>
+        {% }); %}
+    </table>
+</div> 

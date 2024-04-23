@@ -10,10 +10,12 @@ frappe.pages['budget-vs-actual'].on_page_load = function(wrapper) {
 		frappe.call({
 			method: 'envision.envision.page.budget_vs_actual.budget_vs_actual.get_data',
 			callback: function(response){
-				var data = response.message;
+				var table_1_data = response.message[0];
+				var table_2_data = response.message[1];
 				// console.log("asdf0", data)
 				$("#1").remove();
-				$(frappe.render_template("budget_vs_actual_template", {data: data})).appendTo(page.body);
+				$("#2").remove();
+				$(frappe.render_template("budget_vs_actual_template", {table_1_data: table_1_data, table_2_data: table_2_data})).appendTo(page.body);
 			}
 		})
 	}
