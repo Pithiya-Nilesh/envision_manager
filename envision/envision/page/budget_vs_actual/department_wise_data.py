@@ -6,7 +6,6 @@ import frappe, json
 temp_list = []
 
 @frappe.whitelist()
-
 def department_wise_data():
     temp_list.clear()
     

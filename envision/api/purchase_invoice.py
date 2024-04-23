@@ -207,5 +207,6 @@ def validate_budget_items(budget_doc, pi_items, pi):
                     
         else:
             # No matching budget item found for the purchase invoice item
-            frappe.throw(f'No budget found for account {account_name}, {budget_item.item}')
+            # frappe.throw(f'No budget found for account {account_name}, {budget_item.item}')
+            pass
 
