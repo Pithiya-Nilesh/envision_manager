@@ -1,5 +1,5 @@
 from collections import defaultdict
-from envision.api.utils import get_fiscal_year_quaters, get_in_currency_format, get_total
+from envision.api.utils import get_fiscal_year_quaters, get_in_currency_format, get_previous_fiscal_year, get_total
 from erpnext.accounts.utils import get_fiscal_year
 import frappe, json
 
@@ -27,8 +27,8 @@ def get_data():
                 for project in projects:
                     b_name = frappe.db.get_value("Budget", filters={"fiscal_year": fy, "project": project, "docstatus": 1}, fieldname=["name"])
                     if b_name:
-                        get_pi_data_with_budget(f"{index + 1}", b_name, project, key) # map data from budgets and purchase invoice
                         get_si_data_with_budget(f"{index + 1}", b_name, project, key)
+                        get_pi_data_with_budget(f"{index + 1}", b_name, project, key) # map data from budgets and purchase invoice
                         
     agrigate_data = get_aggregated_values(temp_list) # map if duplicate item and create a final list with inr currency
     total_list = get_total(agrigate_data)
@@ -163,7 +163,6 @@ def get_si_data_with_budget(budget_quater, name, project, department):
     pi_list = [{"department": item, "type": "Revenue", actual: amount} for item, amount in sum_dict.items()]
     for i in pi_list:
         temp_list.append(i)
-    print("\n\n temp list", temp_list)
                
 def get_aggregated_values(temp_list):
     sums = {}
@@ -227,52 +226,37 @@ def remove_duplicate_departments(data):
     return data
 
 def sum_revenue_plus_expense(data):
-    # implement sum of this is panding
-    return data
+    output = []
+
+    for index, entry in enumerate(data):
+        if entry['type'] == 'Expense':
+            department_name = entry['department'] + " Margin"
+            revenue_entry = next((x for x in data if x['department'] == entry['department'] and x['type'] == 'Revenue'), None)
+            if revenue_entry:
+                margin_entry = {
+                    "department": department_name,
+                    "type": "",
+                    "q1_budgeted": "0",
+                    "q1_actual": str(revenue_entry.get('q1_actual', 0 - entry.get('q1_actual', 0))),
+                    "q2_budgeted": "0",
+                    "q2_actual": str(revenue_entry.get('q2_actual', 0) - entry.get('q2_actual', 0)),
+                    "q3_budgeted": "0",
+                    "q4_budgeted": "0",
+                    "total_budgeted": "0",
+                    "total_actual": str(revenue_entry.get('total_actual', 0) - entry.get('total_actual', 0)),
+                }
+                output.append(margin_entry)
+        if index == 0:
+            output.append(entry)
+        
+        # Append the next entry if it exists
+        if index < len(data) - 1:
+            output.append(data[index + 1])
+    return output
+ 
+@frappe.whitelist()       
+def get_previous_year_data(data):
+    # previous_year = get_previous_fiscal_year()
+    previous_year = get_previous_fiscal_year()
     
-    
-
-# final data list
-"""
-    [
-        {
-            "department": "", 
-            "revenue_or_expense": "",
-            "q1_b": "", 
-            "q1_a": "", 
-            "q1_ach": "",
-            "q2_b": "", 
-            "q2_a": "", 
-            "q2_ach": "",
-            "q3_b": "", 
-            "q3_a": "", 
-            "q3_ach": "",
-            "q4_b": "", 
-            "q4_a": "",
-            "q4_ach": "",
-            "total_budget: "",
-            "progression_actual": "",
-            "ytm_progressive": "",
-            "fy": "",
-            "growth": "",
-        }
-    ]
-
-"""
-
-"""
-    "message": [
-        {
-            "Accounts": [
-                "PROJ-0003",
-                "PROJ-0001"
-            ]
-        },
-        {
-        "Customer Service": [
-            "PROJ-0002"
-            ]
-        }
-    ]
-"""
-
+    return previous_year

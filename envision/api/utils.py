@@ -1,4 +1,5 @@
 import frappe
+from datetime import datetime
 
 def get_fiscal_year_quaters():
     import datetime
@@ -48,6 +49,7 @@ def format_to_indian_currency(number):
     locale.setlocale(locale.LC_ALL, 'en_IN')
     return locale.currency(number, grouping=True)
 
+
 def get_total(data):
     # Initialize total budgeted and total actual variables
     total_budgeted = 0.0
@@ -61,9 +63,9 @@ def get_total(data):
         # Iterate through keys of the dictionary
         for key, value in item.items():
             if key.endswith('d') and key.startswith('q'):
-                item_total_budgeted += item[key]
+                item_total_budgeted += float(item[key])
             if key.endswith('l') and key.startswith('q'):
-                item_total_actual += item[key]
+                item_total_actual += float(item[key])
         
         # Add item totals to the global totals
         total_budgeted += item_total_budgeted
@@ -73,3 +75,20 @@ def get_total(data):
         item['total_budgeted'] = item_total_budgeted
         item['total_actual'] = item_total_actual
     return data
+
+
+def get_previous_fiscal_year():
+    import datetime
+    from dateutil import relativedelta
+
+    # Get the current date
+    current_date = datetime.date.today()
+
+    # Subtract a year from the current date to get the previous fiscal year
+    previous_fiscal_year_start = datetime.date(current_date.year - 1, 4, 1)
+    previous_fiscal_year_end = datetime.date(current_date.year, 3, 31)
+
+    return {
+        "year_start_date": previous_fiscal_year_start.strftime("%Y-%m-%d"),
+        "year_end_date": previous_fiscal_year_end.strftime("%Y-%m-%d")
+    }
