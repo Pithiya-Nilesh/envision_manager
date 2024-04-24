@@ -347,8 +347,6 @@ def get_previous_year_si_data(budget_quater, name, project, department):
     start_date = str(fiscal[1])
     end_date = str(fiscal[2])
     
-    print("\n\n start_date", start_date)
-    print("\n\n start_date", end_date)
     # get pi details
     si_list = frappe.db.get_list("Sales Invoice", filters={"posting_date": ["between", [start_date, end_date]], "docstatus": 1}, fields=["name"])
     print("\n si", si_list)
@@ -371,12 +369,6 @@ def get_previous_year_si_data(budget_quater, name, project, department):
     for i in pi_list:
         data_l.append(i)
         
-    data_l.append({"department":"Customer Service","type":"Revenue","q2_actual":200.0})
-    data_l.append({"department":"Accounts","type":"Revenue","q3_actual":400.0})
-    data_l.append({"department":"Customer Service","type":"Revenue","q2_actual":200.0})
-    data_l.append({"department":"Accounts","type":"Revenue","q3_actual":400.0})
-    data_l.append({"department":"Accounts","type":"Revenue","q2_actual":400.0})
-    # data_l.append()
     return data_l
 
 def map_current_year_and_last_year_data(current_year_data, previous_year_data):
