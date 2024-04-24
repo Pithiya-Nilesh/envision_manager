@@ -13,7 +13,7 @@ def get_fiscal_year_quaters():
         fiscal_year_start = datetime.date(current_date.year, 4, 1)
     else:
         fiscal_year_start = datetime.date(current_date.year - 1, 4, 1)
-
+        
     # Get the start and end dates of each quarter
     quarters = []
     for i in range(4):
@@ -76,7 +76,7 @@ def get_total(data):
     return data
 
 
-def get_previous_fiscal_year():
+def get_previous_fiscal_year_quaters():
     import datetime
     from dateutil import relativedelta
 
@@ -87,7 +87,22 @@ def get_previous_fiscal_year():
     previous_fiscal_year_start = datetime.date(current_date.year - 1, 4, 1)
     previous_fiscal_year_end = datetime.date(current_date.year, 3, 31)
 
-    return {
-        "year_start_date": previous_fiscal_year_start.strftime("%Y-%m-%d"),
-        "year_end_date": previous_fiscal_year_end.strftime("%Y-%m-%d")
-    }
+    # return {
+    #     "year_start_date": previous_fiscal_year_start.strftime("%Y-%m-%d"),
+    #     "year_end_date": previous_fiscal_year_end.strftime("%Y-%m-%d")
+    # }
+    
+    # str_date = previous_fiscal_year_start.strftime("%Y-%m-%d")
+    # fiscal_year_start = datetime.strptime(str_date, "%Y-%m-%d")
+
+    # Get the start and end dates of each quarter
+    quarters = []
+    for i in range(4):
+        quarter_start = previous_fiscal_year_start + relativedelta.relativedelta(months=i * 3)
+        quarter_end = quarter_start + relativedelta.relativedelta(months=3, days=-1)
+        quarters.append({
+            # f"quarter{i + 1}_start_date": quarter_start.strftime("%Y-%m-%d"),
+            "quarter_start_date": quarter_start.strftime("%Y-%m-%d"),
+            "quarter_end_date": quarter_end.strftime("%Y-%m-%d")
+        })
+    return quarters
