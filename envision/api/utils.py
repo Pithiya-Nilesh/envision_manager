@@ -18,13 +18,12 @@ def get_fiscal_year_quaters():
     quarters = []
     for i in range(4):
         quarter_start = fiscal_year_start + relativedelta.relativedelta(months=i * 3)
-        quarter_end = quarter_start + relativedelta.relativedelta(months=2, days=-1)
+        quarter_end = quarter_start + relativedelta.relativedelta(months=3, days=-1)
         quarters.append({
             # f"quarter{i + 1}_start_date": quarter_start.strftime("%Y-%m-%d"),
             "quarter_start_date": quarter_start.strftime("%Y-%m-%d"),
             "quarter_end_date": quarter_end.strftime("%Y-%m-%d")
         })
-        
     return quarters
 
 
