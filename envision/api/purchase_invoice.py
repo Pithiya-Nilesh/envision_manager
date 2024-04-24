@@ -127,7 +127,6 @@ def validate_budget_for_item(pi, method):
         'fiscal_year': fiscal_year,
     }
     
-    
     budgets = frappe.get_all('Budget', filters=budget_filters, fields=['name'])
     
     if not budgets:
@@ -154,6 +153,15 @@ def validate_budget_items(budget_doc, pi_items, pi):
         budget_account = next((bi for bi in budget_doc.accounts if bi.account == account_name), None)
         
         if budget_account:
+            if pi_item.project or budget_doc.project:
+                if pi_item.project != budget_doc.project:
+                    frappe.throw(f"Project for item {pi_item.item_code } not match!")
+                    continue
+            elif pi_item.cost_center or budget_doc.cost_center:
+                if pi_item.cost_center != budget_doc.cost_center:
+                    print(pi_item.cost_center, budget_doc.cost_center)
+                    frappe.throw(f"Cost center for item {pi_item.item_code } not match!")
+                    continue
             # Calculate remaining quantities and amounts
             for budget_item in budget_doc.custom_budget_for_items:
                 item_code= budget_item.item
@@ -169,7 +177,7 @@ def validate_budget_items(budget_doc, pi_items, pi):
                         `tabPurchase Invoice` ON `tabPurchase Invoice Item`.parent = `tabPurchase Invoice`.name
                     WHERE
                         item_code = %(item_code)s
-                        AND `tabPurchase Invoice`.status IN ('Submitted', 'Draft', 'Debit Note Issued')
+                        AND `tabPurchase Invoice`.status = 'Unpaid'
                 """
 
                 # Pass the parameters as a dictionary
@@ -204,9 +212,6 @@ def validate_budget_items(budget_doc, pi_items, pi):
                         frappe.throw(f'Item quantity exceeds the remaining budgeted quantity for account {account_name}.')
                     if remaining_amount < 0:
                         frappe.throw(f'Item amount exceeds the remaining budgeted amount for account {account_name}.')
-                    
         else:
             # No matching budget item found for the purchase invoice item
-            # frappe.throw(f'No budget found for account {account_name}, {budget_item.item}')
-            pass
-
+            frappe.throw(f'No budget found for account {account_name}')
