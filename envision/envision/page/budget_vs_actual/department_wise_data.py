@@ -47,8 +47,7 @@ def get_final_list():
     final_list = remove_duplicate_departments(currency_data)
     
     return final_list
-    
-    
+      
 def get_pi_data_with_budget(budget_quater, name, project, department):
     from frappe.utils import today
     budget = ""
@@ -349,7 +348,6 @@ def get_previous_year_si_data(budget_quater, name, project, department):
     
     # get pi details
     si_list = frappe.db.get_list("Sales Invoice", filters={"posting_date": ["between", [start_date, end_date]], "docstatus": 1}, fields=["name"])
-    print("\n si", si_list)
     
     for si in si_list:
         si_details = frappe.get_doc("Sales Invoice", si.name)
