@@ -297,12 +297,13 @@ def get_previous_year_data():
 
     # Iterate through the data and sum up the revenue for each department
     for entry in data_l:
-        department = entry['department']
-        revenue_q1 = entry.get('q1_actual', 0)
-        revenue_q2 = entry.get('q2_actual', 0)
-        revenue_q3 = entry.get('q3_actual', 0)
-        revenue_q4 = entry.get('q4_actual', 0)
-        pfy_revenue[department] += revenue_q1 + revenue_q2 + revenue_q3 + revenue_q4
+        if 'department' in entry:
+            department = entry['department']
+            revenue_q1 = entry.get('q1_actual', 0)
+            revenue_q2 = entry.get('q2_actual', 0)
+            revenue_q3 = entry.get('q3_actual', 0)
+            revenue_q4 = entry.get('q4_actual', 0)
+            pfy_revenue[department] += revenue_q1 + revenue_q2 + revenue_q3 + revenue_q4
 
     # Convert defaultdict to regular dictionary if needed
     pfy_revenue = dict(pfy_revenue)
