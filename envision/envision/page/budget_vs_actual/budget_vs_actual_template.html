@@ -115,3 +115,37 @@
     </table>
 </div> 
 
+<div id="3">
+    <h4 class="mt-5">Budget and Actual Data Based on Project and Client </h4>
+    <table class="table table-bordered table-hover" style="text-align: center; width: 100%; font-size: small;">
+        <tr style="text-align:center;">
+            <th>Project Name</th>
+            <th>Client Name</th>
+            <th>Q1+Q2+Q3 Budget</th>
+            <th>Q1+Q2+Q3 Actual</th>
+            <th>Jan-24 <br>Actual</th>
+            <th>Q4 <br> Budget</th>
+            <th>Q4 <br> Actual</th>
+            <th>Total Budget</th>
+            <th>Total Actual</th>
+            <th>Status</th>
+        </tr>
+        <tbody>
+            {% $.each(table_3_data, (idx, row) => { %}
+                <tr>
+                    <td>{{ row.Project_Name }}</td>
+                    <td>{{ row.Client_Name }}</td>
+                    <td>₹{{ row.q1_q2_q3_budgeted || "0" }}</td>
+                    <td>₹{{ row.q1_q2_q3_actual || "0"  }}</td>
+                    <td></td>
+                    <td>₹{{ row.q4_budgeted || "0" }}</td>
+                    <td>₹{{ row.q4_actual|| "0"  }}</td>
+                    <td>₹{{ row.total_budgeted || "0" }}</td>
+                    <td>₹{{ row.total_actual || "0" }}</td>
+                    <td></td>   
+                    
+                </tr>
+        {% }) %}
+        </tbody>
+    </table>
+</div>

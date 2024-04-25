@@ -12,10 +12,11 @@ frappe.pages['budget-vs-actual'].on_page_load = function(wrapper) {
 			callback: function(response){
 				var table_1_data = response.message[0];
 				var table_2_data = response.message[1];
-				// console.log("asdf0", data)
+				var table_3_data = response.message[2];
 				$("#1").remove();
 				$("#2").remove();
-				$(frappe.render_template("budget_vs_actual_template", {table_1_data: table_1_data, table_2_data: table_2_data})).appendTo(page.body);
+				$("#3").remove();
+				$(frappe.render_template("budget_vs_actual_template", {table_1_data: table_1_data, table_2_data: table_2_data, table_3_data: table_3_data})).appendTo(page.body);
 			}
 		})
 	}
