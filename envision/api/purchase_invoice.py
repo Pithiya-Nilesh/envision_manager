@@ -11,7 +11,8 @@ def validate_budget_for_item(pi, method):
     }
     budgets = frappe.get_all('Budget', filters=budget_filters, fields=['name'])
     if not budgets:
-        frappe.throw('No matching budget found for the fiscal year.')
+        pass
+        # frappe.throw('No matching budget found for the fiscal year.')
     
     # Iterate through each budget and validate the purchase invoice items
     for budget in budgets:
@@ -41,7 +42,8 @@ def validate_budget_items(budget_doc, pi_items, pi):
                         or (pi_item.cost_center and budget_doc.cost_center and pi_item.cost_center == budget_doc.cost_center):
                     matching_budgets = True
             else:
-                frappe.msgprint(f"Warning: Account for item {pi_item.item_code} and {budget_doc.name} does not match.")
+                pass
+                # frappe.msgprint(f"Warning: Account for item {pi_item.item_code} and {budget_doc.name} does not match.")
                     
         # Check if project or cost center mismatch
         if pi_item.project and budget_doc.project and pi_item.project != budget_doc.project:
