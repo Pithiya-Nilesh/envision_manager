@@ -101,8 +101,8 @@ def validate_budget_items(budget_doc, pi_items, pi):
                 remaining_qty = float(budget_item.qty) - float(previously_used_qty)
                 remaining_amount = budget_item.amount - previously_used_amount
                 
-                # Check if the purchase invoice item exceeds the budget limits
                 if remaining_qty < 0:
-                    frappe.throw(f'Item quantity exceeds the remaining budgeted quantity for account {account_name}.')
+                    frappe.msgprint(f'Warning: Item quantity exceeds the remaining budgeted quantity for account {account_name}.')
                 if remaining_amount < 0:
-                    frappe.throw(f'Item amount exceeds the remaining budgeted amount for account {account_name}.')
+                    frappe.msgprint(f'Warning: Item amount exceeds the remaining budgeted amount for account {account_name}.')
+                    
