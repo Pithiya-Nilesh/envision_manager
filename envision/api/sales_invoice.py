@@ -3,7 +3,7 @@ import frappe, json
 
 
 
-def validate_budget_for_ittem(si, method):
+def validate_budget_for_item(si, method):
     """Validate budget per item in sales invoice."""
     # Determine if cost center or project is used for budgeting
     is_cost_center = True if si.cost_center else False
