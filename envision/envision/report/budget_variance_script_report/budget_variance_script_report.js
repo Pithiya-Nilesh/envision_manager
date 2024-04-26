@@ -43,6 +43,13 @@ function get_filters() {
 			options: "Fiscal Year",
 			default: frappe.sys_defaults.fiscal_year,
 			reqd: 1,
+			on_change: function () {
+                // Update the value of to_fiscal_year field
+                const from_fiscal_year = frappe.query_report.get_filter_value("from_fiscal_year");
+                frappe.query_report.set_filter_value("to_fiscal_year", from_fiscal_year);
+				frappe.query_report.refresh();
+
+            },
 		},
 		{
 			fieldname: "to_fiscal_year",
@@ -51,6 +58,7 @@ function get_filters() {
 			options: "Fiscal Year",
 			default: frappe.sys_defaults.fiscal_year,
 			reqd: 1,
+			read_only:1,		
 		},
 		{
 			fieldname: "period",
@@ -108,4 +116,3 @@ function get_filters() {
 
 	return filters;
 }
-
