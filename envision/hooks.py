@@ -120,13 +120,13 @@ doc_events = {
 	"Purchase Invoice": {
         # "before_submit": "", 
         # "before_insert": "envision.api.purchase_invoice.validate_budget_for_item"
-		"on_update": "envision.api.purchase_invoice.validate_budget_for_item",
+		"on_submit": "envision.api.purchase_invoice.validate_budget_for_item",
 		# "on_cancel": "method",
 		# "on_trash": "method"
 	},
-    # "Sales Invoice": {
-    #     "before_submit": "",
-	# }
+    "Sales Invoice": {
+        "on_submit": "envision.api.sales_invoice.validate_budget_for_item",
+	}
 }
 
 # Scheduled Tasks
